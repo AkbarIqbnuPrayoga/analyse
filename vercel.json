@@ -1,11 +1,9 @@
 {
   "version": 2,
-  "buildCommand": "npm run build --prefix frontend",
-  "installCommand": "npm install --prefix frontend",
   "outputDirectory": "frontend/dist",
   "framework": "vite",
   "env": {
-    "ALPHA_VANTAGE_KEY": "5NNH29OR5CEXVHJ0"
+    "ALPHA_VANTAGE_KEY": "@alpha_vantage_key"
   },
   "routes": [
     {
@@ -14,8 +12,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/dist/$1",
-      "status": 404
+      "dest": "/frontend/dist/$1"
     }
   ]
 }
