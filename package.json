@@ -1,6 +1,7 @@
 {
   "name": "xauusd-analyzer-serverless",
   "version": "1.0.0",
+  "type": "module",
   "description": "XAU/USD Analyzer - Deployed to Vercel with serverless functions",
   "scripts": {
     "deploy": "vercel",

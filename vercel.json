@@ -1,23 +1,116 @@
 {
   "version": 2,
-  "buildCommand": "npm run build --prefix frontend",
+  "buildCommand": "npm run build --prefix frontend && npm install --prefix backend",
   "installCommand": "npm install --prefix frontend && npm install --prefix backend",
+  "outputDirectory": "frontend/dist",
+  "framework": "react",
   "env": {
-    "ALPHA_VANTAGE_KEY": "@alpha_vantage_key"
+    "ALPHA_VANTAGE_KEY": {
+      "description": "API key for Alpha Vantage data fetching service (required for live data)"
+    },
+    "NODE_ENV": {
+      "description": "Environment type (production or development)",
+      "default": "production"
+    },
+    "CACHE_DURATION": {
+      "description": "Data cache duration in milliseconds",
+      "default": "60000"
+    },
+    "PORT": {
+      "description": "Backend server port",
+      "default": "5000"
+    }
   },
   "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x"
+    "backend/src/server.js": {
+      "runtime": "nodejs18.x",
+      "memory": 1024,
+      "maxDuration": 30,
+      "environment": [
+        "ALPHA_VANTAGE_KEY",
+        "NODE_ENV",
+        "CACHE_DURATION"
+      ]
     }
   },
   "routes": [
     {
-      "src": "/api/.*",
-      "dest": "/api/$1.js"
+      "src": "/api/xauusd/(.*)",
+      "dest": "/backend/src/server.js",
+      "methods": ["GET", "POST", "OPTIONS"]
     },
     {
-      "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
+      "src": "^/api/v1/gold-price/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/api/xauusd/price"
+      }
+    },
+    {
+      "src": "^/api/v1/historical/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/api/xauusd/history"
+      }
+    },
+    {
+      "src": "^/api/v1/analysis/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/api/xauusd/indicators"
+      }
+    },
+    {
+      "src": "^/api/v1/predict/?$",
+      "status": 301,
+      "headers": {
+        "Location": "/api/xauusd/prediction"
+      }
+    },
+    {
+      "src": "^/api/.*",
+      "status": 404,
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "src": "^/(?!api).*",
+      "dest": "/index.html",
+      "status": 200
+    }
+  ],
+  "github": {
+    "enabled": true,
+    "autoAlias": true,
+    "autoJobCancelation": true
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=60"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
     }
   ]
 }
