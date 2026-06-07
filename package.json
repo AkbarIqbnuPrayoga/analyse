@@ -1,4 +1,15 @@
 {
+  "name": "xauusd-analyzer-serverless",
+  "version": "1.0.0",
+  "description": "XAU/USD Analyzer - Deployed to Vercel with serverless functions",
+  "scripts": {
+    "deploy": "vercel",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm start"
+  },
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "playwright": "^1.60.0"
   }

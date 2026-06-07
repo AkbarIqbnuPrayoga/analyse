@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build --prefix frontend",
+  "installCommand": "npm install --prefix frontend && npm install --prefix backend",
+  "env": {
+    "ALPHA_VANTAGE_KEY": "@alpha_vantage_key"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/.*",
+      "dest": "/api/$1.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/dist/$1"
+    }
+  ]
+}
