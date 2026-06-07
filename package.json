@@ -9,7 +9,7 @@
     "dev:backend": "cd backend && npm start"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "dependencies": {
     "playwright": "^1.60.0"
