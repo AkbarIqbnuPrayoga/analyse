@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: #111827;
+  color: #f3f4f6;
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.price-display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: bold;
+  color: #fbbf24;
+}
+
+.change {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.change.up {
+  color: #10b981;
+}
+
+.change.down {
+  color: #ef4444;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.controls button {
+  padding: 10px 20px;
+  background: #374151;
+  border: 1px solid #4b5563;
+  border-radius: 8px;
+  color: #d1d5db;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.controls button:hover {
+  background: #4b5563;
+  color: #f3f4f6;
+}
+
+.controls button.active {
+  background: #3b82f6;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+.container {
+  display: grid;
+  gap: 24px;
+}
+
+.chart-container,
+.indicators-container,
+.prediction-container {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.chart-container h2,
+.indicators-container h2,
+.prediction-container h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #f3f4f6;
+}
+
+.chart {
+  width: 100%;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .price-display {
+    align-items: center;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+  }
+}

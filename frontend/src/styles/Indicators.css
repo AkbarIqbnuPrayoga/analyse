@@ -1,0 +1,51 @@
+.indicators-container {
+  grid-column: 1 / -1;
+}
+
+.indicators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.indicator {
+  background: #111827;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.indicator h3 {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.indicator .value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fbbf24;
+  margin-bottom: 4px;
+}
+
+.indicator .value.overbought {
+  color: #ef4444;
+}
+
+.indicator .value.oversold {
+  color: #10b981;
+}
+
+.indicator small {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.indicator p {
+  font-size: 12px;
+  color: #d1d5db;
+  margin: 4px 0;
+}
