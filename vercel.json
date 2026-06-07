@@ -3,7 +3,7 @@
   "buildCommand": "npm run build --prefix frontend",
   "installCommand": "npm install --prefix frontend",
   "outputDirectory": "frontend/dist",
-  "framework": "react",
+  "framework": "vite",
   "env": {
     "ALPHA_VANTAGE_KEY": "5NNH29OR5CEXVHJ0"
   },
